@@ -77,20 +77,15 @@ restart.addEventListener("click", () =>{
 function display(btn){
 
 	if(player.innerText === "Player: 1"){
-		if(btn.innerText === ""){
+		if(btn.innerText === "" && winner.innerText === ""){
 		    btn.innerText = "x"
-	    }
-
-		if(winner.innerText === ""){
 		    player.innerText = "Player: 2"
 	    }
 
 	}
 	else{
-		if(btn.innerText === ""){
+		if(btn.innerText === "" && winner.innerText === ""){
 		    btn.innerText = "o"
-	    }
-		if(winner.innerText === ""){
 		    player.innerText = "Player: 1"
 	    }
 	}
