@@ -40,24 +40,19 @@ function chooseMachineCombo(btn){
 arrayOfBtn.map(element => {
 
 	element.addEventListener("click", () =>{
-		//if (player.innerText = "Player: 1" && winner.innerText === "") {
-			display(element)
-			game()
-		//}
-		if (player.innerText = "Player: 2" && winner.innerText === "") {
+		display(element)
+		if (player.innerText === "Player: 2" && winner.innerText === "") {
 			let availablePosibilities = chooseMachineCombo(element);
-		    //selectEmptyButtons(availablePosibilities)
 		    let freeSpace = availablePosibilities.filter(element =>{
 			return  element.innerText === ""
 		    })
-		    console.log("availablePosibilities: ",availablePosibilities)
-		    console.log("freeSpace: ",freeSpace)
 		    if(freeSpace.length > 0){
 		        const random = Math.floor(Math.random() * freeSpace.length);
 		        display(freeSpace[random]);
-		        game()
 	        }
 		}
+		
+		
 	})
 })
  
@@ -89,7 +84,7 @@ function display(btn){
 		    player.innerText = "Player: 1"
 	    }
 	}
-	
+	game()
 	btn.disabled = true
 }
 
@@ -113,12 +108,12 @@ function game(){
 		   element[2].innerText !== ""  ){
 
 		   	if(player.innerText === "Player: 2"){
-			    player.innerText = "Player: 1"
 			    winner.innerText = "(Player 1)  is the winner"
+			     player.innerText = "Player: 1"
 		    }
 		    else{
-		        player.innerText = "Player: 2"
 		        winner.innerText = "(Player 2)  is the winner"	
+		        player.innerText = "Player: 2"
 		    }
 		    disable()
 		}
