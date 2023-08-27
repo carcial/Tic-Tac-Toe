@@ -95,7 +95,7 @@ arrayOfBtn.map(element => {
 
 restart.addEventListener("click", () =>{
 
-	player.innerText = "Player: 1"
+	/*player.innerText = "Player: 1"
 	winner.innerText = ""
 	winner.style.color = "royalblue" 
 	freeSpace = arrayOfBtn.length
@@ -104,7 +104,8 @@ restart.addEventListener("click", () =>{
 		arrayOfBtn[i].disabled = false;
 		arrayOfBtn[i].innerText = "";
 		arrayOfBtn[i].style.backgroundColor = "white"
-	}
+	}*/
+	location.reload()
 
 })
 
