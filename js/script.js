@@ -103,6 +103,7 @@ restart.addEventListener("click", () =>{
 	for(let i = 0; i < arrayOfBtn.length; i++){
 		arrayOfBtn[i].disabled = false;
 		arrayOfBtn[i].innerText = "";
+		arrayOfBtn[i].style.backgroundColor = "white"
 	}
 
 })
@@ -136,6 +137,12 @@ function disable(){
 	}
 }
 
+function colorBox(array,color){
+	array.map(e => {
+		e.style.backgroundColor = color
+	})
+}
+
 function game(){
 
 	winningCombos.map(element =>{
@@ -148,11 +155,13 @@ function game(){
 
 		   	if(player.innerText === "Player: 2"){
 			    winner.innerText = "YOU WIN !!!"
+			    colorBox(element,"royalblue")
 			    player.innerText = ""
 		    }
 		    else{
 		    	winner.style.color = "red"
-		        winner.innerText = "YOU LOST !!!"	
+		        winner.innerText = "YOU LOST !!!"
+		        colorBox(element,"red")	
 		        player.innerText = ""
 		    }
 		    disable()
