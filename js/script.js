@@ -19,19 +19,59 @@ const arrayOfBtn = [btn1,btn2,btn3,
 	                btn4,btn5,btn6,
 	                btn7,btn8,btn9,]
 
-const machineCombos = [[btn9,btn5,btn6,btn8],[btn8,btn5,btn7,btn9],[btn7,btn4,btn5,btn8],
-	                         [btn6,btn3,btn5,btn9],[btn5,btn1,btn2,btn3,btn4,btn6,btn7,btn8,btn9],
-	                         [btn4,btn1,btn5,btn7],[btn3,btn2,btn5,btn6],[btn2,btn1,btn3,btn5],
-	                         [btn1,btn2,btn4,btn5] ]
 const winningCombos = [[btn1,btn2,btn3], [btn4,btn5,btn6], [btn7,btn8,btn9],
 	                   [btn1,btn5,btn9], [btn3,btn5,btn7], [btn1,btn4,btn7],
 	                   [btn2,btn5,btn8], [btn3,btn6,btn9]]
 
 
-function chooseMachineCombo(btn){
-	for(let i = 0; i < machineCombos.length; i++){
-		if(btn === machineCombos[i][0]){
-			return machineCombos[i]
+
+function checkCombo(btn){
+	let help = []
+	winningCombos.map(element =>{
+
+		if(element[0].innerText === element[1].innerText 
+			&& element[0].innerText !== "" 
+			&& element[1].innerText !== ""){
+
+			if(element[2].innerText === ""){
+				help.push(element[2])
+			}
+		}
+		else if(element[1].innerText === element[2].innerText 
+			&& element[1].innerText !== "" 
+			&& element[2].innerText !== "" ){
+
+			if(element[0].innerText === ""){
+				help.push(element[0])
+			}
+		}
+		else if(element[0].innerText === element[2].innerText 
+			&& element[0].innerText !== "" 
+			&& element[2].innerText !== "" ){
+			
+			if(element[1].innerText === ""){
+				help.push(element[1])
+			}
+		}
+	})
+	if(help.length > 0){
+		const random = Math.floor(Math.random() * help.length);
+		display(help[random]);
+	}
+	else{ 
+
+		let count = 1
+		while(count < 10){
+			const random = Math.floor(Math.random() * arrayOfBtn.length)
+			if(arrayOfBtn[random].innerText === ""){
+				display(arrayOfBtn[random])
+				break;
+			}
+			count++
+			if(count >= 9){
+				display(btn)
+			}
+
 		}
 	}
 }
@@ -42,14 +82,8 @@ arrayOfBtn.map(element => {
 	element.addEventListener("click", () =>{
 		display(element)
 		if (player.innerText === "Player: 2" && winner.innerText === "") {
-			let availablePosibilities = chooseMachineCombo(element);
-		    let freeSpace = availablePosibilities.filter(element =>{
-			return  element.innerText === ""
-		    })
-		    if(freeSpace.length > 0){
-		        const random = Math.floor(Math.random() * freeSpace.length);
-		        display(freeSpace[random]);
-	        }
+
+	        setTimeout(()=>{checkCombo(element)},900)
 		}
 		
 		
@@ -61,6 +95,7 @@ restart.addEventListener("click", () =>{
 
 	player.innerText = "Player: 1"
 	winner.innerText = ""
+	winner.style.color = "royalblue"
 
 	for(let i = 0; i < arrayOfBtn.length; i++){
 		arrayOfBtn[i].disabled = false;
@@ -108,12 +143,13 @@ function game(){
 		   element[2].innerText !== ""  ){
 
 		   	if(player.innerText === "Player: 2"){
-			    winner.innerText = "(Player 1)  is the winner"
-			     player.innerText = "Player: 1"
+			    winner.innerText = "YOU WIN !!!"
+			    player.innerText = ""
 		    }
 		    else{
-		        winner.innerText = "(Player 2)  is the winner"	
-		        player.innerText = "Player: 2"
+		    	winner.style.color = "red"
+		        winner.innerText = "YOU LOST !!!"	
+		        player.innerText = ""
 		    }
 		    disable()
 		}
