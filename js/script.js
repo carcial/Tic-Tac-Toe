@@ -23,7 +23,7 @@ const winningCombos = [[btn1,btn2,btn3], [btn4,btn5,btn6], [btn7,btn8,btn9],
 	                   [btn1,btn5,btn9], [btn3,btn5,btn7], [btn1,btn4,btn7],
 	                   [btn2,btn5,btn8], [btn3,btn6,btn9]]
 
-
+let freeSpace = arrayOfBtn.length
 
 function checkCombo(btn){
 	let help = []
@@ -53,30 +53,26 @@ function checkCombo(btn){
 				help.push(element[1])
 			}
 		}
+
 	})
 	if(help.length > 0){
 		const random = Math.floor(Math.random() * help.length);
 		display(help[random]);
+
 	}
 	else{ 
 
-		let count = 1
-		while(count < 10){
+		while(freeSpace > 0){
 			const random = Math.floor(Math.random() * arrayOfBtn.length)
 			if(arrayOfBtn[random].innerText === ""){
 				display(arrayOfBtn[random])
 				break;
-			}
-			count++
-			if(count >= 9){
-				display(btn)
 			}
 
 		}
 	}
 }
 
-let freeSpace = 9
 
 arrayOfBtn.map(element => {
 
@@ -102,7 +98,7 @@ restart.addEventListener("click", () =>{
 	player.innerText = "Player: 1"
 	winner.innerText = ""
 	winner.style.color = "royalblue" 
-	freeSpace = 9
+	freeSpace = arrayOfBtn.length
 
 	for(let i = 0; i < arrayOfBtn.length; i++){
 		arrayOfBtn[i].disabled = false;
@@ -117,7 +113,6 @@ function display(btn){
 		if(btn.innerText === "" && winner.innerText === ""){
 		    btn.innerText = "x"
 		    player.innerText = "Player: 2"
-		    freeSpace--
 	    }
 
 	}
@@ -125,9 +120,9 @@ function display(btn){
 		if(btn.innerText === "" && winner.innerText === ""){
 		    btn.innerText = "o"
 		    player.innerText = "Player: 1"
-		    freeSpace--
 	    }
 	}
+	freeSpace--
 	game()
 	btn.disabled = true
 }
