@@ -101,7 +101,8 @@ restart.addEventListener("click", () =>{
 
 	player.innerText = "Player: 1"
 	winner.innerText = ""
-	winner.style.color = "royalblue"
+	winner.style.color = "royalblue" 
+	freeSpace = 9
 
 	for(let i = 0; i < arrayOfBtn.length; i++){
 		arrayOfBtn[i].disabled = false;
