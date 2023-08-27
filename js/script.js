@@ -76,7 +76,7 @@ function checkCombo(btn){
 	}
 }
 
-let freeeSpace = 9
+let freeSpace = 9
 
 arrayOfBtn.map(element => {
 
@@ -86,7 +86,7 @@ arrayOfBtn.map(element => {
 
 	        setTimeout(()=>{checkCombo(element)},900)
 		}
-		if(freeeSpace === 0){
+		if(freeSpace === 0){
 		    winner.style.color = "orange"
 		    winner.innerText = "No WINNER !!!"
 		    player.innerText = ""
@@ -117,7 +117,7 @@ function display(btn){
 		if(btn.innerText === "" && winner.innerText === ""){
 		    btn.innerText = "x"
 		    player.innerText = "Player: 2"
-		    freeeSpace--
+		    freeSpace--
 	    }
 
 	}
@@ -125,7 +125,7 @@ function display(btn){
 		if(btn.innerText === "" && winner.innerText === ""){
 		    btn.innerText = "o"
 		    player.innerText = "Player: 1"
-		    freeeSpace--
+		    freeSpace--
 	    }
 	}
 	game()
