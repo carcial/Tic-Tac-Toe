@@ -34,8 +34,6 @@ let initialScore = [0,0]
 
 
 const key = localStorage.key("score")
-console.log("key:  "+key)
-
 let st = JSON.parse(localStorage.getItem(key))
 
 if(st){
@@ -79,7 +77,6 @@ function checkCombo(btn){
 	if(help.length > 0){
 		const random = Math.floor(Math.random() * help.length);
 		display(help[random]);
-
 	}
 	else{ 
 
@@ -89,7 +86,6 @@ function checkCombo(btn){
 				display(arrayOfBtn[random])
 				break;
 			}
-
 		}
 	}
 }
@@ -108,16 +104,12 @@ arrayOfBtn.map(element => {
 		    winner.innerText = "No WINNER !!!"
 		    player.innerText = ""
 	    }
-
 	})
-
 })
  
 
 restart.addEventListener("click", () =>{
-
 	location.reload()
-
 })
 
 resetBtn.addEventListener("click", () => {
@@ -134,7 +126,6 @@ function display(btn){
 		    btn.innerText = "x"
 		    player.innerText = "Player: 2"
 	    }
-
 	}
 	else{
 		if(btn.innerText === "" && winner.innerText === ""){
@@ -163,22 +154,17 @@ function colorBox(array,color){
 
 function calcScore(element){
 
-	console.log("element? : ", element)
-
 	if(element === "player1"){
 		initialScore[0] += 1
 		scoreX.innerText = initialScore[0]
-		console.log("initialScore[0]: ", initialScore[0])
 	}
 	else{
 		initialScore[1] += 1
 		scoreO.innerText = initialScore[1]
-		console.log("initialScore[1]: ", initialScore[1])
 	}
 
 	let storeScore = JSON.stringify(initialScore)
 	localStorage.setItem("score",storeScore)
-	console.log("scores: " ,initialScore)
 }
 
 function game(){
@@ -207,7 +193,6 @@ function game(){
 		    disable()
 		}
 	})
-
 
 }
 
