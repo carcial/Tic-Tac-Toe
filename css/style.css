@@ -7,10 +7,14 @@
 h1{
 	display: flex;
 	justify-content: center;
+	margin-top: 5px;
 }
 
 .btn_main_container{
-	margin-top: 150px;
+	margin-top: 60px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .btn_container{
@@ -40,7 +44,7 @@ h1{
 	color: royalblue;
 	font-size: 30px;
 	font-weight: bold;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 }
 
 #player{
@@ -61,7 +65,45 @@ h1{
 	cursor: pointer;
 	background: gray;
 	border: gray;
-	margin-top: 20px;
+	margin-top: 15px;
 	width: 130px;
 	height: 30px;
+}
+
+.score_container{
+	width: 100%;
+	font-weight: bold;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 20px;
+}
+.score_sub_container{
+	position: relative;
+	border-top: 3px solid black;
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+}
+h6{
+	font-size: 35px;
+	margin-left: 7px;
+}
+h4{
+	font-size: 20px;
+}
+
+.score_sub_player{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+#reset_button{
+	position: absolute;
+	top: 30px;
+	border: 1px solid black;
+	padding: 5px;
+	cursor: pointer;
+	display: flex;
 }

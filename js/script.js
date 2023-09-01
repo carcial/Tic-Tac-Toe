@@ -15,6 +15,11 @@ let player = document.getElementById("player")
 let restart = document.getElementById("btn_restart")
 let winner = document.getElementById("winner")
 
+
+let scoreX = document.getElementById("score_sub_X")
+let scoreO = document.getElementById("score_sub_O")
+let resetBtn = document.getElementById("reset_button")
+
 const arrayOfBtn = [btn1,btn2,btn3,
 	                btn4,btn5,btn6,
 	                btn7,btn8,btn9,]
@@ -24,6 +29,22 @@ const winningCombos = [[btn1,btn2,btn3], [btn4,btn5,btn6], [btn7,btn8,btn9],
 	                   [btn2,btn5,btn8], [btn3,btn6,btn9]]
 
 let freeSpace = arrayOfBtn.length
+
+let initialScore = [0,0]
+
+
+const key = localStorage.key("score")
+console.log("key:  "+key)
+
+let st = JSON.parse(localStorage.getItem(key))
+
+if(st){
+	initialScore = st
+
+	scoreX.innerText = initialScore[0]
+	scoreO.innerText = initialScore[1]
+}
+
 
 function checkCombo(btn){
 	let help = []
@@ -95,18 +116,15 @@ arrayOfBtn.map(element => {
 
 restart.addEventListener("click", () =>{
 
-	/*player.innerText = "Player: 1"
-	winner.innerText = ""
-	winner.style.color = "royalblue" 
-	freeSpace = arrayOfBtn.length
-
-	for(let i = 0; i < arrayOfBtn.length; i++){
-		arrayOfBtn[i].disabled = false;
-		arrayOfBtn[i].innerText = "";
-		arrayOfBtn[i].style.backgroundColor = "white"
-	}*/
 	location.reload()
 
+})
+
+resetBtn.addEventListener("click", () => {
+	initialScore = [0,0]
+	let storeScore = JSON.stringify(initialScore)
+	localStorage.setItem("score",storeScore)
+	location.reload()
 })
 
 function display(btn){
@@ -130,7 +148,6 @@ function display(btn){
 }
 
 
-
 function disable(){
 
 	for(let i = 0; i< arrayOfBtn.length; i++){
@@ -142,6 +159,26 @@ function colorBox(array,color){
 	array.map(e => {
 		e.style.backgroundColor = color
 	})
+}
+
+function calcScore(element){
+
+	console.log("element? : ", element)
+
+	if(element === "player1"){
+		initialScore[0] += 1
+		scoreX.innerText = initialScore[0]
+		console.log("initialScore[0]: ", initialScore[0])
+	}
+	else{
+		initialScore[1] += 1
+		scoreO.innerText = initialScore[1]
+		console.log("initialScore[1]: ", initialScore[1])
+	}
+
+	let storeScore = JSON.stringify(initialScore)
+	localStorage.setItem("score",storeScore)
+	console.log("scores: " ,initialScore)
 }
 
 function game(){
@@ -158,12 +195,14 @@ function game(){
 			    winner.innerText = "YOU WIN !!!"
 			    colorBox(element,"royalblue")
 			    player.innerText = ""
+			    calcScore("player1")
 		    }
 		    else{
 		    	winner.style.color = "red"
 		        winner.innerText = "YOU LOST !!!"
 		        colorBox(element,"red")	
 		        player.innerText = ""
+		        calcScore("player2")
 		    }
 		    disable()
 		}
