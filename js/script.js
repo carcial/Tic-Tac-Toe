@@ -35,6 +35,7 @@ let initialScore = [0,0]
 
 const key = localStorage.key("score")
 let st = JSON.parse(localStorage.getItem(key))
+console.log("st: ", st)
 console.log("initialScore: ", initialScore)
 
 if(st){
