@@ -33,20 +33,13 @@ let freeSpace = arrayOfBtn.length
 let initialScore = [0,0]
 
 
-const key = localStorage.key("score")
 let st = JSON.parse(localStorage.getItem("score"))
-console.log("st: ", st)
-console.log("initialScore: ", initialScore)
 
 if(st){
 	initialScore = st
-
-	console.log("initialScore in st: ", initialScore)
+	
 	scoreX.innerText = initialScore[0]
 	scoreO.innerText = initialScore[1]
-
-	console.log("initialScore[0]: ", initialScore[0])
-	console.log("initialScore[1]: ", initialScore[1])
 }
 
 
