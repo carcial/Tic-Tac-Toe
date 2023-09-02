@@ -40,6 +40,7 @@ console.log("initialScore: ", initialScore)
 if(st){
 	initialScore = st
 
+	console.log("initialScore in st: ", initialScore)
 	scoreX.innerText = initialScore[0]
 	scoreO.innerText = initialScore[1]
 
