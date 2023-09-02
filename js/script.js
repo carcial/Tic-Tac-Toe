@@ -42,6 +42,9 @@ if(st){
 	scoreO.innerText = initialScore[1]
 }
 
+window.onbeforeunload = () => {// to clear the localStorage the page is closed
+  localStorage.clear();
+};
 
 function checkCombo(btn){
 	let help = []
