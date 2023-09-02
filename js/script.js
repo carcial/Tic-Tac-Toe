@@ -35,12 +35,16 @@ let initialScore = [0,0]
 
 const key = localStorage.key("score")
 let st = JSON.parse(localStorage.getItem(key))
+console.log("initialScore: ", initialScore)
 
 if(st){
 	initialScore = st
 
 	scoreX.innerText = initialScore[0]
 	scoreO.innerText = initialScore[1]
+
+	console.log("initialScore[0]: ", initialScore[0])
+	console.log("initialScore[1]: ", initialScore[1])
 }
 
 
