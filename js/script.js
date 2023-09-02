@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+
 
 let btn1  = document.getElementById("btn_1")
 let btn2  = document.getElementById("btn_2")
@@ -193,6 +193,6 @@ function game(){
 	})
 
 }
-})
+
 // win with (1,2,3) or (4,5,6) or (7,8,9) or (1,5,9) or (3,5,7)
 // or (1,4,7) or (2,5,8) or (3,6,9)
