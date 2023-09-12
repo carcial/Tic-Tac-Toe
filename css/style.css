@@ -14,8 +14,12 @@ header{
 	flex-direction: column;
 	align-items: center;
 }
-.active header,.active .score,.active h4,.active h6,.active .player, .active .btn{
+.active header,.active .score,.active h4,.active h6,.active .player{
 	color: white;
+}
+.active .btn{
+	color: white;
+	background-color: #161616;
 }
 body.active{
 	background-color: #141738;
