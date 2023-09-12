@@ -1,4 +1,6 @@
 
+let hard_mode = document.getElementById("hard_mode")
+let normal_mode = document.getElementById("normal_mode")
 
 let btn1  = document.getElementById("btn_1")
 let btn2  = document.getElementById("btn_2")
@@ -34,16 +36,36 @@ let initialScore = [0,0]
 
 
 let st = JSON.parse(localStorage.getItem("score"))
+let storedMode = localStorage.getItem("mode")
+let countOnce = 0
 
 if(st){
 	initialScore = st
-	
+
 	scoreX.innerText = initialScore[0]
 	scoreO.innerText = initialScore[1]
+
 }
 
-function checkCombo(btn){
+normal_mode.addEventListener("click", ()=>{
+	document.body.classList.remove("active")
+	localStorage.removeItem("mode")
+	location.reload()
+})
+hard_mode.addEventListener("click", ()=>{
+	document.body.classList.add("active")
+	localStorage.setItem("mode","hard_mode")
+	location.reload()
+})
+
+
+function checkCombo(){
 	let help = []
+
+	if(storedMode && countOnce === 0){
+		help = [btn1,btn3,btn5,btn7,btn9]
+		countOnce ++
+	}
 	winningCombos.map(element =>{
 
 		if(element[0].innerText === element[1].innerText 
@@ -88,32 +110,44 @@ function checkCombo(btn){
 	}
 }
 
+if(storedMode){
+	document.body.classList.add("active")
 
-arrayOfBtn.map(element => {
+	player.innerText ="Player: 2" 
 
-	element.addEventListener("click", () =>{
-		display(element)
-		if (player.innerText === "Player: 2" && winner.innerText === "") {
+   	setTimeout(()=>{checkCombo()},600)   
+	arrayOfBtn.map(element =>{
+			element.addEventListener("click", ()=>{
+				display(element)
+				if (player.innerText === "Player: 2" && winner.innerText === "") {
 
-	        setTimeout(()=>{checkCombo(element)},900)
-		}
-		if(freeSpace === 0){
-		    winner.style.color = "orange"
-		    winner.innerText = "No WINNER !!!"
-		    player.innerText = ""
-	    }
+	                 setTimeout(()=>{checkCombo()},900)
+		        }
+	        })
+
 	})
-})
- 
+	
+}
+
+else{
+
+    arrayOfBtn.map(element => {
+
+	    element.addEventListener("click", () =>{
+		    display(element)
+		    if (player.innerText === "Player: 2" && winner.innerText === "") {
+	            setTimeout(()=>{checkCombo()},900)
+		    }
+	    })
+    })
+} 
 
 restart.addEventListener("click", () =>{
 	location.reload()
 })
 
 resetBtn.addEventListener("click", () => {
-	initialScore = [0,0]
-	let storeScore = JSON.stringify(initialScore)
-	localStorage.setItem("score",storeScore)
+	localStorage.removeItem("score")
 	location.reload()
 })
 
@@ -132,6 +166,12 @@ function display(btn){
 	    }
 	}
 	freeSpace--
+
+	if(freeSpace === 0){           
+		winner.style.color = "orange"
+		winner.innerText = "No WINNER !!!"
+		player.innerText = ""
+	}
 	game()
 	btn.disabled = true
 }

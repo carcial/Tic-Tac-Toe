@@ -11,6 +11,10 @@
 
 	<header>
 		<h1>Tic-Tac-Toe</h1>
+		<div class="diff_mode">
+			<div id="normal_mode" class="normal_mode change">NORMAL</div>
+			<div id="hard_mode" class="hard_mode change">HARD</div>
+		</div>
 	</header>
 
 	<section>
@@ -18,7 +22,7 @@
 			<div id="winner"></div>
 			<div>
 				<div class="score_container">
-					<div>SCORE</div>
+					<div class="score">SCORE</div>
 					<div class="score_sub_container">
 						<div class="score_sub_player">
 						    <h4>X<h4>
@@ -49,7 +53,7 @@
 
 			</div>
 
-			<div id="player">Player: 1</div>
+			<div id="player" class="player">Player: 1</div>
 
 			<div class="btn_restartCls">
 				<button id = "btn_restart">Restart</button>
