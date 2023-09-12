@@ -169,7 +169,7 @@ function display(btn){
 
 	if(freeSpace === 0){           
 		winner.style.color = "orange"
-		winner.innerText = "No WINNER !!!"
+		winner.innerText = "NO WINNER !!!"
 		player.innerText = ""
 	}
 	game()
